@@ -13,6 +13,15 @@ export const AuthedUserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
+  const [hoots, setHoots] = useState([])
+
+  useEffect(() => {
+    const fetchAllHoots = async () => {
+      const hootsData = await hootService.index()
+      setHoots(hootsData)
+    }
+    if (user) fetchAllHoots()
+  }, [user])
 
   const handleSignout = () => {
     authService.signout();
@@ -27,7 +36,7 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Dashboard user={user} />} />
-              <Route path="/hoots" element={<HootList />} />
+              <Route path="/hoots" element={<HootList hoots={hoots} />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
