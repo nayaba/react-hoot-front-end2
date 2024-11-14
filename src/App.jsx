@@ -55,6 +55,7 @@ const App = () => {
               <Route path="/hoots" element={<HootList hoots={hoots} />} />
               <Route path="/hoots/:hootId" element={<HootDetails handleDeleteHoot={handleDeleteHoot} />} />
               <Route path="/hoots/new" element={<HootForm handleAddHoot={handleAddHoot} />} />
+              <Route path="/hoots/:hootId/edit" element={<HootForm />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />

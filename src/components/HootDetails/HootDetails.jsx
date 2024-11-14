@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import * as hootService from '../../services/hootService'
 import Loading from '../Loading/Loading'
@@ -37,6 +37,7 @@ const HootDetails = props => {
         </p>
         {hoot.author._id === user._id && (
           <>
+            <Link to={`/hoots/${hootId}/edit`}>EDIT</Link>
             <button onClick={() => props.handleDeleteHoot(hootId)}>
               DELETE
             </button>
